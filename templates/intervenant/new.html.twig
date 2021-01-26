@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pour créer un nouvel intervenant</h1>
+
+    {{ include('intervenant/_form.html.twig') }}
+
+    <a href="{{ path('intervenant_index') }}">&#8617;&#65039;Retour à la liste des intervenants</a>
+{% endblock %}

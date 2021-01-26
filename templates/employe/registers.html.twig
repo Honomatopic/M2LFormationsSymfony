@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %} {% block body %}
+
+<h2>Mes sessions de formations où je suis inscrits</h2>
+{% for message in app.flashes('reussie') %}
+<div class="reussie">
+    {{ message }}
+</div>
+{% endfor %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Intitule</th>
+            <th>Durée</th>
+            <th>Datefin</th>
+            <th>Salle</th>
+            <th>Prestataire</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.id }}</td>
+            <td>{{ session.intitule }}</td>
+            <td>Du {{ session.datedebut ? session.datedebut|date('d/m/Y') : '' }} au {{ session.datefin ? session.datefin|date('d/m/Y') : '' }}</td>
+            <td>{{ session.salle }}</td>
+            <td>{{ session.nomintervenant }}</td>
+            <td>{{ session.prestataire }}</td>
+            <td>
+                <a href="{{ path('employe_register_session', {'id': app.user.id, 'session': session.id }) }}">&#128269;Voir le détail</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8">Pas de session</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('session_new') }}">&#128395;&#65039;Créer une session</a> {% endif %} {% endblock %}

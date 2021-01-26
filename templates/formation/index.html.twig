@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  
+  <h2>La liste des formations</h2>
+
+  {% for message in app.flashes('reussie') %}
+    <div class="reussie">
+      {{ message }}
+    </div>
+  {% endfor %}
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Intitule</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for formation in formations %}
+        <tr>
+          <td>{{ formation.id }}</td>
+          <td>{{ formation.intitule }}</td>
+          <td>
+            <a href="{{ path('formation_show', {'id': formation.id}) }}">&#128269;Voir le détail</a> 
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="8">Aucune formations répertoriées</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('formation_new') }}">&#128395;&#65039;Créer une nouvelle formation</a>
+  {% endif %}
+{% endblock %}

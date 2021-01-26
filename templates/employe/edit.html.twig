@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  {% if app.user %}
+    <div class="mb-3">
+      Bienvenue
+      {{ app.user.username }},
+      <a href="{{ path('logout') }}">&#128275;Se déconnecter</a>
+      <br>
+      <a href="{{ path('employe_show', {'id': app.user.id}) }}">&#8617;&#65039;Mes informations</a>
+      <br>
+      <a href="{{ path('employe_register', {'id': app.user.id}) }}">&#128269;Voir mes formations</a>
+    </div>
+  {% endif %}
+  <h2>Pour éditer
+    {{ employe.prenom }}</h2>
+  {% for message in app.flashes('echoue') %}
+    <div class="echoue">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+  {{ include('employe/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+  <a href="{{ path('employe_index') }}">&#8617;&#65039;Retour à la liste des employés</a>
+
+  {{ include('employe/_delete_form.html.twig') }}
+{% endblock %}

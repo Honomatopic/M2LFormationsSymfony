@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h2>Pour vous inscrire</h2>
+
+  {{ include('employe/_form.html.twig') }}
+  {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('employe_index') }}">&#8617;&#65039;Retour à la liste des employés</a>
+  {% endif %}
+
+{% endblock %}

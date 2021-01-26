@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %} {% block body %}
+<h1>La liste des intervenants</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for intervenant in intervenants %}
+        <tr>
+            <td>{{ intervenant.id }}</td>
+            <td>{{ intervenant.nom }}</td>
+            <td>
+                <a href="{{ path('intervenant_show', {'id': intervenant.id}) }}">&#128269;Voir le détail</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">Aucun intervenants répertoriés</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('intervenant_new') }}">&#128395;&#65039;Créer une nouvel intervenant</a> {% endblock %}

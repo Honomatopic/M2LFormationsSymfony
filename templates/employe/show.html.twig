@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <h2>Voici les informations de
+    {{ employe.prenom }}</h2>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Id</th>
+        <td>{{ employe.id }}</td>
+      </tr>
+      <tr>
+        <th>Nom</th>
+        <td>{{ employe.nom }}</td>
+      </tr>
+      <tr>
+        <th>Prenom</th>
+        <td>{{ employe.prenom }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ employe.email }}</td>
+      </tr>
+      <tr>
+        <th>Motpasse</th>
+        <td>{{ employe.password }}</td>
+      </tr>
+      <tr>
+        <th>Roles</th>
+        <td></td>
+      </tr>
+
+    </tbody>
+  </table>
+{% if is_granted('ROLE_ADMIN') %}
+  <a href="{{ path('employe_index') }}">&#8617;&#65039;Retour à la liste des employés</a>
+  {% endif %}
+  <a href="{{ path('employe_edit', {'id': employe.id}) }}">&#128395;&#65039;Modifier</a>
+  {{ include('employe/_delete_form.html.twig') }}
+{% endblock %}

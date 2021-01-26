@@ -1,0 +1,49 @@
+-- Affichage des sessions de formations de l'employé (par exemple ayant l'id 22) -- 
+SELECT session.id AS idsession, 
+formation.intitule AS intitule, 
+duree.datedebut AS datedebut, 
+duree.datefin AS datefin, 
+salle.nom AS salle, 
+intervenant.nom AS nomintervenant, 
+intervenant.prenom AS prenomintervenant, 
+prestataire.nom AS prestataire 
+FROM session 
+JOIN formation ON session.formations_id = formation.id 
+JOIN duree ON session.durees_id = duree.id 
+JOIN salle ON session.salles_id = salle.id 
+JOIN intervenant ON session.intervenants_id = intervenant.id 
+JOIN prestataire ON session.prestataires_id = prestataire.id 
+JOIN employe_session ON session.id = employe_session.session_id 
+JOIN employe ON employe_session.employe_id = employe.id 
+WHERE employe.id = 10 
+
+-- Affichage des sessions de formations non inscrite de l'employé (par exemple ayant l'id 22) -- 
+SELECT session.id AS idsession, formation.intitule AS intitule, duree.datedebut AS datedebut, duree.datefin AS datefin, salle.nom AS salle, intervenant.nom AS nomintervenant, intervenant.prenom AS prenomintervenant, prestataire.nom AS prestataire
+FROM session 
+JOIN formation ON session.formations_id = formation.id 
+JOIN duree ON session.durees_id = duree.id 
+JOIN salle ON session.salles_id = salle.id 
+JOIN intervenant ON session.intervenants_id = intervenant.id 
+JOIN prestataire ON session.prestataires_id = prestataire.id 
+JOIN employe_session ON session.id = employe_session.session_id 
+JOIN employe ON employe_session.employe_id = employe.id 
+WHERE employe.id =! 10 
+
+-- Affichage de la session (par exemple ayant l'id 1) -- 
+SELECT session.id AS idsession, formation.intitule AS intitule, duree.datedebut AS datedebut, duree.datefin AS datefin, salle.nom AS salle, intervenant.nom AS nomintervenant, intervenant.prenom AS prenomintervenant, prestataire.nom AS prestataire
+FROM session 
+JOIN formation ON session.formations_id = formation.id 
+JOIN duree ON session.durees_id = duree.id 
+JOIN salle ON session.salles_id = salle.id 
+JOIN intervenant ON session.intervenants_id = intervenant.id 
+JOIN prestataire ON session.prestataires_id = prestataire.id 
+WHERE session.id = 1 
+
+-- Affichage de toutes les sessions --
+SELECT session.id AS idsession, formation.intitule AS intitule, duree.datedebut AS datedebut, duree.datefin AS datefin, salle.nom AS salle, intervenant.nom AS nomintervenant, intervenant.prenom AS prenomintervenant, prestataire.nom AS prestataire
+FROM session 
+JOIN formation ON session.formations_id = formation.id 
+JOIN duree ON session.durees_id = duree.id 
+JOIN salle ON session.salles_id = salle.id 
+JOIN intervenant ON session.intervenants_id = intervenant.id 
+JOIN prestataire ON session.prestataires_id = prestataire.id

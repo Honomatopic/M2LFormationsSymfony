@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}M2L Formations{% endblock %}
+    </title>
+    {% block stylesheets %}{% endblock %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <img src="{{ asset('image/m2l.jpg') }}" alt="M2L" />
+    <header id="menu-deroulant">
+        {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li><a href="">Gérer</a></li>
+            <ul>
+                <li><a href="{{ path('employe_index') }}">&#128105;&#8205;&#127979; Les employés</a></li>
+                <li><a href="{{ path('formation_index') }}">&#127890; Les formations</a></li>
+                <li><a href="{{ path('duree_index') }}">&#128467;&#65039; Les durées</a></li>
+                <li><a href="{{ path('intervenant_index') }}">&#128104;&#8205;&#127979; &#128105;&#8205;&#127979; Les intervenants</a></li>
+                <li><a href="{{ path('prestataire_index') }}">&#129333; Les prestataires</a></li>
+                <li><a href="{{ path('salle_index') }}">&#127970; Les salles</a></li>
+                <li><a href="{{ path('session_index') }}">&#128450;&#65039; Les sessions</a></li>
+            </ul>
+
+            <li><a href="{{ path('session_index') }}">&#128450;&#65039; Consulter toutes les sessions de formations</a></li>
+        </ul>
+        {% endif %} {% if app.user %}
+        <div class="mb-3">
+            Bienvenue {{ app.user.username }},
+            <a href="{{ path('logout') }}">&#128275;Se déconnecter</a>
+            <br>
+            <a href="{{ path('employe_show', {'id': app.user.id}) }}">&#128104;&#8205;&#128188; Mes informations</a>
+            <br>
+            <a href="{{ path('employe_register', {'id': app.user.id }) }}">&#128450;&#65039; Voir mes sessions de formation</a>
+        </div>
+        {% endif %}
+    </header>
+    {% block body %}{% endblock %} {% block javascripts %}{% endblock %}
+</body>
+<footer>
+
+    <hr> &copy {{ "now"|date("Y") }} Honoré Rasamoelina
+</footer>
+
+</html>

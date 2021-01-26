@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pour créer un nouvel prestataire</h1>
+
+    {{ include('prestataire/_form.html.twig') }}
+
+    <a href="{{ path('prestataire_index') }}">&#8617;&#65039; Retour à la liste des prestataires</a>
+{% endblock %}

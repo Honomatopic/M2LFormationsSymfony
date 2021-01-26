@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  
+  <h2>Editer la formation de
+    {{ formation.intitule }}</h2>
+  {% for message in app.flashes('echoue') %}
+    <div class="echoue">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+  {{ include('formation/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+  <a href="{{ path('formation_index') }}">&#8617;&#65039;Retour à la liste des formations</a>
+
+  {{ include('formation/_delete_form.html.twig') }}
+{% endblock %}

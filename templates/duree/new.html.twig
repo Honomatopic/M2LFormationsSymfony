@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pour créer une nouvelle durée</h1>
+
+    {{ include('duree/_form.html.twig') }}
+
+    <a href="{{ path('duree_index') }}">&#8617;&#65039;Retour à la liste des durées</a>
+{% endblock %}

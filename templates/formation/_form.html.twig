@@ -1,0 +1,7 @@
+<fieldset>
+  <legend>Le formulaire des formations</legend>
+  {{ form_start(form) }}
+  {{ form_row(form.intitule)}}
+<button>{{ button_label|default('Sauvegarder') }}</button>
+  {{ form_end(form) }}
+</fieldset>

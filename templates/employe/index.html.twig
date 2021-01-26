@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %} {% block body %} {% if app.user %}
+<div class="mb-3">
+    Bienvenue {{ app.user.username }},
+    <a href="{{ path('logout') }}">&#128275;Se déconnecter</a>
+    <br>
+    <a href="{{ path('employe_show', {'id': app.user.id}) }}">&#8617;&#65039;Mes informations</a>
+    <br>
+    <a href="{{ path('employe_register', {'id': app.user.id}) }}">&#128269;Voir mes formations</a>
+</div>
+{% endif %}
+<h2>La liste des employés</h2>
+{% for message in app.flashes('reussie') %}
+<div class="reussie">
+    {{ message }}
+</div>
+{% endfor %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Motpasse</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employe in employes %}
+        <tr>
+            <td>{{ employe.id }}</td>
+            <td>{{ employe.nom }}</td>
+            <td>{{ employe.prenom }}</td>
+            <td>{{ employe.email }}</td>
+            <td>{{ employe.password }}</td>
+            <td><a href="{{ path('employe_role', {'id': employe.id}) }}">&#129485;Changer de rôle</a></td>
+            <td>
+                <a href="{{ path('employe_show', {'id': employe.id}) }}">&#128269;Voir le détail</a> 
+
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7">Non trouvé</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('employe_new') }}">&#128395;&#65039;Créer un nouvel employé</a> {% endif %} {% endblock %}

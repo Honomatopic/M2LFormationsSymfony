@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Pour créer une nouvelle session</h1>
+
+    {{ include('session/_form.html.twig') }}
+
+    <a href="{{ path('session_index') }}">&#8617;&#65039; Retour à la liste des sessions</a>
+{% endblock %}

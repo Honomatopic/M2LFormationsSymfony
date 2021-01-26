@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %} {% block body %}
+<h1>La liste des sessions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Intitulé</th>
+            <th>Durée</th>
+            <th>Salle</th>
+            <th>Intervenant</th>
+            <th>Prestataire</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.id }}</td>
+            <td>{{ session.intitule }}</td>
+            <td>Du {{ session.datedebut ? session.datedebut|date('d/m/Y') : '' }} Au {{ session.datefin ? session.datefin|date('d/m/Y') : '' }}</td>
+            <td>{{ session.salle }}</td>
+            <td>{{ session.nomintervenant }}</td>
+            <td>{{ session.prestataire }}</td>
+            <td>
+                <a href="{{ path('session_show', {'id': session.id}) }}">&#128269;Voir le détail</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="2">Aucune session de formations validées</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('session_new') }}">&#128395;&#65039;Créer une nouvelle session de formation</a> {% endblock %}

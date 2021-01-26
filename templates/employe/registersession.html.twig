@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %} {% block body %}
+
+<h1>La session de formation n° {{ session.id }} de {{ session.intitule }}</h1>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ session.id }}</td>
+        </tr>
+        <tr>
+            <th>L'intitulé de la formation</th>
+            <td>{{ session.intitule }}</td>
+        </tr>
+        <tr>
+            <th>La durée</th>
+            <td>Du {{ session.datedebut ? session.datedebut|date('d/m/Y') : '' }} Au {{ session.datefin ? session.datefin|date('d/m/Y') : '' }}</td>
+        </tr>
+        <tr>
+            <th>La salle</th>
+            <td>{{ session.salle }}</td>
+        </tr>
+        <tr>
+            <th>L'intervenant</th>
+            <td>{{ session.nomintervenant }}</td>
+        </tr>
+        <tr>
+            <th>Le prestataire</th>
+            <td>{{ session.prestataire }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('session_unregister', {'id': app.user.id, 'session': session.id }) }}"><button>&#128395;&#65039;Se désinscrire</button></a>
+<a href="{{ path('session_pdf', {'id': session.id }) }}"><button>&#128195; Générer le PDF</button></a>
+<a href="{{ path('session_index') }}">&#8617;&#65039;Retour à la liste des sessions</a> {% if is_granted('ROLE_ADMIN') %}
+<br>
+<a href="{{ path('session_edit', {'id': session.id }) }}">&#128395;&#65039;Modifier la session</a> {{ include('session/_delete_form.html.twig') }} {% endif %} {% endblock %}

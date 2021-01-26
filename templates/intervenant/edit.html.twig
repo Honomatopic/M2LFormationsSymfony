@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pour éditer l'intervenant</h1>
+    {% for message in app.flashes('echoue') %}
+    <div class="echoue">
+      {{ message }}
+    </div>
+  {% endfor %}
+    {{ include('intervenant/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('intervenant_index') }}">&#8617;&#65039;Retour à la liste des intervenants</a>
+
+    {{ include('intervenant/_delete_form.html.twig') }}
+{% endblock %}

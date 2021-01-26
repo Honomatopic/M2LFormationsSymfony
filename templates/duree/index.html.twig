@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>La liste des durées</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for duree in durees %}
+            <tr>
+                <td>{{ duree.id }}</td>
+                <td>{{ duree.datedebut ? duree.datedebut|date('d/m/Y') : '' }}</td>
+                <td>{{ duree.datefin ? duree.datefin|date('d/m/Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('duree_show', {'id': duree.id}) }}">&#128269;Voir le détail</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune durées répertoriées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('duree_new') }}">&#128395;&#65039;Créer une nouvelle durée</a>
+{% endblock %}

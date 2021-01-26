@@ -1,0 +1,10 @@
+<fieldset>
+  <legend>Le formulaire des Employés</legend>
+  {{ form_start(form) }}
+  {{ form_row(form.nom)}}
+  {{ form_row(form.prenom)}}
+  {{ form_row(form.email)}}
+  {{ form_row(form.password)}}
+  <button>{{ button_label|default(' Sauvegarder') }}
+    {{ form_end(form) }}
+  </fieldset>
