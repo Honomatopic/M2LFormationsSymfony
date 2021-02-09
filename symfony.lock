@@ -172,6 +172,9 @@
     "symfony/dependency-injection": {
         "version": "v4.4.8"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/doctrine-bridge": {
         "version": "v4.4.8"
     },
@@ -227,6 +230,9 @@
             "./src/Controller/.gitignore",
             "./src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v4.4.8"
@@ -289,6 +295,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.17.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.20.0"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
